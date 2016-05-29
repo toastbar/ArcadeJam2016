@@ -33,8 +33,13 @@ public class MapMaker : MonoBehaviour {
                 {
                     case '#': tileId = 1;
                         break;
+					case '*': tileId = 2;
+						break;
+				case 'B':
+					tileId = 3;
+					break;
                 }
-
+					
                 GameObject tileProto = tileObjects[tileId];
 
                 if (tileProto)

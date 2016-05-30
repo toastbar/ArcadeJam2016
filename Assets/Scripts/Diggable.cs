@@ -18,7 +18,7 @@ public class Diggable : MonoBehaviour {
     public void ApplyHit(float damage)
     {
         hitPoints -= damage;
-        Debug.Log(hitPoints);
+        //Debug.Log(hitPoints);
         if (hitPoints < 0)
         {
             if (onDestroyObject)
@@ -26,7 +26,7 @@ public class Diggable : MonoBehaviour {
                 Object.Instantiate(onDestroyObject, transform.position, transform.rotation);
             }
 
-            Object.Destroy(gameObject);
+            Object.DestroyImmediate(gameObject);
         }
     }
 }

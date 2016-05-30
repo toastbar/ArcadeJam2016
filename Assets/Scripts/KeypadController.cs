@@ -27,7 +27,10 @@ public class KeypadController : MonoBehaviour {
 
     void OnDestroy()
     {
-        serial.Close();
+        if (serial != null)
+        {
+            serial.Close();
+        }
     }
 
     public void SetLedState(bool[] ledStates)

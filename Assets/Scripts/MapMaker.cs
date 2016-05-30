@@ -18,8 +18,8 @@ public class MapMaker : MonoBehaviour {
 
         Debug.Log(string.Format("{0} lines read", lines.Length));
 
-        float originY = (mapHeight - 0.5f) / 2 * tileHeight;
-        float originX = (mapWidth - 0.5f) / 2 * -tileWidth;
+        float originY = (float)mapHeight / 2.0f * (float)tileHeight - (float)tileHeight * 0.5f;
+        float originX = (float)mapWidth / 2.0f * -(float)tileWidth + (float)tileWidth * 0.5f;
   
         _map = new GameObject[mapHeight][];
         for (int ty = 0; ty < mapHeight; ++ty) {
@@ -31,13 +31,18 @@ public class MapMaker : MonoBehaviour {
                 int tileId = 0;
                 switch (line[tx])
                 {
-                    case '#': tileId = 1;
+                    case '.': tileId = 1;
                         break;
 					case '*': tileId = 2;
 						break;
-				case 'B':
-					tileId = 3;
-					break;
+				    case 'B': tileId = 3;
+					    break;
+                    case '=': tileId = 4;
+                        break;
+                    case 's': tileId = 5;
+                        break;
+                    case '#': tileId = 6;
+                        break;
                 }
 					
                 GameObject tileProto = tileObjects[tileId];

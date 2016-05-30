@@ -1,0 +1,725 @@
+fileFormatVersion: 2
+guid: e67f84645bae44269a7a107409347238
+timeCreated: 1464569199
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: exp_0
+    21300002: exp_1
+    21300004: exp_2
+    21300006: exp_3
+    21300008: exp_4
+    21300010: exp_5
+    21300012: exp_6
+    21300014: exp_7
+    21300016: exp_8
+    21300018: exp_9
+    21300020: exp_10
+    21300022: exp_11
+    21300024: exp_12
+    21300026: exp_13
+    21300028: exp_14
+    21300030: exp_15
+    21300032: exp_16
+    21300034: exp_17
+    21300036: exp_18
+    21300038: exp_19
+    21300040: exp_20
+    21300042: exp_21
+    21300044: exp_22
+    21300046: exp_23
+    21300048: exp_24
+    21300050: exp_25
+    21300052: exp_26
+    21300054: exp_27
+    21300056: exp_28
+    21300058: exp_29
+    21300060: exp_30
+    21300062: exp_31
+    21300064: exp_32
+    21300066: exp_33
+    21300068: exp_34
+    21300070: exp_35
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 1
+  spritePivot: {x: 0, y: 1}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 32
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: exp_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 19, y: -8}
+        - {x: 3, y: -8}
+        - {x: 2, y: -9}
+        - {x: 2, y: -23}
+        - {x: 8, y: -24}
+        - {x: 29, y: -24}
+        - {x: 30, y: -18}
+        - {x: 30, y: -14}
+        - {x: 26, y: -9}
+    - name: exp_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: -5}
+        - {x: 1, y: -7}
+        - {x: 1, y: -22}
+        - {x: 10, y: -27}
+        - {x: 21, y: -27}
+        - {x: 24, y: -26}
+        - {x: 30, y: -21}
+        - {x: 30, y: -6}
+        - {x: 24, y: -5}
+    - name: exp_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 4, y: -3}
+        - {x: 0, y: -13}
+        - {x: 0, y: -23}
+        - {x: 3, y: -28}
+        - {x: 32, y: -28}
+        - {x: 32, y: -3}
+    - name: exp_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23, y: -3}
+        - {x: 16, y: -2}
+        - {x: 2, y: -2}
+        - {x: 0, y: -7}
+        - {x: 0, y: -19}
+        - {x: 4, y: -25}
+        - {x: 7, y: -29}
+        - {x: 31, y: -29}
+        - {x: 32, y: -27}
+        - {x: 32, y: -5}
+        - {x: 28, y: -4}
+    - name: exp_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3, y: -2}
+        - {x: 0, y: -5}
+        - {x: 0, y: -27}
+        - {x: 10, y: -32}
+        - {x: 28, y: -32}
+        - {x: 32, y: -30}
+        - {x: 32, y: -3}
+        - {x: 29, y: -2}
+    - name: exp_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 0}
+        - {x: 0, y: -30}
+        - {x: 2, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+    - name: exp_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: 0}
+        - {x: 0, y: -1}
+        - {x: 0, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+    - name: exp_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 4, y: 0}
+        - {x: 0, y: -3}
+        - {x: 0, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+    - name: exp_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: 0}
+        - {x: 0, y: -4}
+        - {x: 0, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+    - name: exp_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 64
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 0}
+        - {x: 0, y: -31}
+        - {x: 1, y: -32}
+        - {x: 31, y: -32}
+        - {x: 32, y: -26}
+        - {x: 32, y: 0}
+    - name: exp_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: 0}
+        - {x: 0, y: -4}
+        - {x: 0, y: -26}
+        - {x: 1, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: -2}
+        - {x: 29, y: 0}
+    - name: exp_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 64
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 0}
+        - {x: 0, y: -30}
+        - {x: 4, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+    - name: exp_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8, y: -7}
+        - {x: 3, y: -12}
+        - {x: 1, y: -18}
+        - {x: 1, y: -23}
+        - {x: 5, y: -24}
+        - {x: 20, y: -24}
+        - {x: 30, y: -23}
+        - {x: 31, y: -20}
+        - {x: 31, y: -15}
+        - {x: 24, y: -8}
+    - name: exp_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: -5}
+        - {x: 0, y: -6}
+        - {x: 0, y: -19}
+        - {x: 1, y: -25}
+        - {x: 6, y: -27}
+        - {x: 25, y: -27}
+        - {x: 31, y: -23}
+        - {x: 32, y: -19}
+        - {x: 32, y: -5}
+    - name: exp_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 29, y: -4}
+        - {x: 1, y: -4}
+        - {x: 0, y: -5}
+        - {x: 0, y: -26}
+        - {x: 10, y: -29}
+        - {x: 30, y: -29}
+        - {x: 31, y: -28}
+        - {x: 32, y: -26}
+        - {x: 32, y: -11}
+    - name: exp_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: -1}
+        - {x: 7, y: -1}
+        - {x: 0, y: -9}
+        - {x: 0, y: -28}
+        - {x: 11, y: -31}
+        - {x: 32, y: -31}
+        - {x: 32, y: -9}
+        - {x: 31, y: -4}
+    - name: exp_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: 0}
+        - {x: 0, y: -1}
+        - {x: 0, y: -25}
+        - {x: 3, y: -31}
+        - {x: 32, y: -31}
+        - {x: 32, y: 0}
+    - name: exp_17
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 0}
+        - {x: 0, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: -1}
+        - {x: 29, y: 0}
+    - name: exp_18
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 0}
+        - {x: 0, y: -4}
+        - {x: 0, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+    - name: exp_19
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 32
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 0}
+        - {x: 0, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+    - name: exp_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 32
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 0}
+        - {x: 0, y: -31}
+        - {x: 2, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+    - name: exp_21
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 32
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 0}
+        - {x: 0, y: -21}
+        - {x: 1, y: -30}
+        - {x: 4, y: -32}
+        - {x: 30, y: -32}
+        - {x: 32, y: -30}
+        - {x: 32, y: 0}
+    - name: exp_22
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 32
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 0}
+        - {x: 0, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+    - name: exp_23
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 32
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: 0}
+        - {x: 0, y: -13}
+        - {x: 0, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+    - name: exp_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -7}
+        - {x: 0, y: -22}
+        - {x: 2, y: -24}
+        - {x: 29, y: -24}
+        - {x: 32, y: -22}
+        - {x: 32, y: -9}
+        - {x: 31, y: -7}
+    - name: exp_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: -5}
+        - {x: 0, y: -7}
+        - {x: 0, y: -18}
+        - {x: 2, y: -26}
+        - {x: 30, y: -26}
+        - {x: 32, y: -24}
+        - {x: 32, y: -13}
+        - {x: 26, y: -5}
+    - name: exp_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 28, y: -4}
+        - {x: 1, y: -4}
+        - {x: 0, y: -5}
+        - {x: 0, y: -13}
+        - {x: 1, y: -26}
+        - {x: 4, y: -29}
+        - {x: 30, y: -29}
+        - {x: 31, y: -27}
+        - {x: 31, y: -7}
+    - name: exp_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 4, y: -2}
+        - {x: 0, y: -9}
+        - {x: 0, y: -29}
+        - {x: 2, y: -31}
+        - {x: 16, y: -31}
+        - {x: 29, y: -30}
+        - {x: 32, y: -25}
+        - {x: 32, y: -2}
+    - name: exp_28
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: -1}
+        - {x: 0, y: -4}
+        - {x: 0, y: -31}
+        - {x: 28, y: -31}
+        - {x: 32, y: -27}
+        - {x: 32, y: -1}
+    - name: exp_29
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 0}
+        - {x: 3, y: -1}
+        - {x: 0, y: -17}
+        - {x: 0, y: -23}
+        - {x: 1, y: -31}
+        - {x: 12, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+    - name: exp_30
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 0}
+        - {x: 0, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+    - name: exp_31
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: 0}
+        - {x: 0, y: -2}
+        - {x: 0, y: -32}
+        - {x: 29, y: -32}
+        - {x: 32, y: -29}
+        - {x: 32, y: 0}
+    - name: exp_32
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 0}
+        - {x: 0, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+    - name: exp_33
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 0}
+        - {x: 0, y: -29}
+        - {x: 2, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: -2}
+        - {x: 31, y: 0}
+    - name: exp_34
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 0}
+        - {x: 0, y: -29}
+        - {x: 1, y: -32}
+        - {x: 31, y: -32}
+        - {x: 32, y: -30}
+        - {x: 32, y: 0}
+    - name: exp_35
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 0}
+        - {x: 2, y: -8}
+        - {x: 0, y: -16}
+        - {x: 0, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 0}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

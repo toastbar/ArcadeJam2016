@@ -25,7 +25,10 @@ public class JoypadController : MonoBehaviour
 
     void OnDestroy()
     {
-        serial.Close();
+        if (serial != null)
+        {
+            serial.Close();
+        }
     }
 
     public void SetColorState(Color[] colors)

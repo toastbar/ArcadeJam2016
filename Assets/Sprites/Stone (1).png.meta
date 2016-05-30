@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: beb36c16527734f2b987da227e3ca72f
-timeCreated: 1464565526
+timeCreated: 1464596320
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -62,18 +62,18 @@ TextureImporter:
         y: 128
         width: 32
         height: 32
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 2, y: 0}
-        - {x: 0, y: -2}
-        - {x: 0, y: -31}
-        - {x: 1, y: -32}
-        - {x: 31, y: -32}
-        - {x: 32, y: -31}
-        - {x: 32, y: -2}
-        - {x: 30, y: 0}
+      - - {x: -14, y: 16}
+        - {x: -16, y: 14}
+        - {x: -16, y: -15}
+        - {x: -15, y: -16}
+        - {x: 15, y: -16}
+        - {x: 16, y: -15}
+        - {x: 16, y: 14}
+        - {x: 14, y: 16}
     - name: Stone (1)_1
       rect:
         serializedVersion: 2
@@ -81,15 +81,15 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 1, y: 0}
-        - {x: 0, y: -1}
-        - {x: 0, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 0}
+      - - {x: -15, y: 16}
+        - {x: -16, y: 15}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
     - name: Stone (1)_2
       rect:
         serializedVersion: 2
@@ -97,17 +97,17 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 5, y: 0}
-        - {x: 0, y: -4}
-        - {x: 0, y: -31}
-        - {x: 2, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: -3}
-        - {x: 31, y: 0}
+      - - {x: -11, y: 16}
+        - {x: -16, y: 12}
+        - {x: -16, y: -15}
+        - {x: -14, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 13}
+        - {x: 15, y: 16}
     - name: Stone (1)_3
       rect:
         serializedVersion: 2
@@ -115,18 +115,18 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 5, y: 0}
-        - {x: 0, y: -8}
-        - {x: 0, y: -28}
-        - {x: 5, y: -32}
-        - {x: 25, y: -32}
-        - {x: 32, y: -30}
-        - {x: 32, y: -5}
-        - {x: 26, y: 0}
+      - - {x: -11, y: 16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -12}
+        - {x: -11, y: -16}
+        - {x: 9, y: -16}
+        - {x: 16, y: -14}
+        - {x: 16, y: 11}
+        - {x: 10, y: 16}
     - name: Stone (1)_4
       rect:
         serializedVersion: 2
@@ -134,16 +134,16 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 4, y: 0}
-        - {x: 1, y: -3}
-        - {x: 1, y: -28}
-        - {x: 7, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 0}
+      - - {x: -12, y: 16}
+        - {x: -15, y: 13}
+        - {x: -15, y: -12}
+        - {x: -9, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
     outline: []
   spritePackingTag: 
   userData: 

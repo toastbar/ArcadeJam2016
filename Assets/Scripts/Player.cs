@@ -4,10 +4,11 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     public int playerNum;
-    public float speed;
-    public float digDistance;
-    public float digStrength;
-    public float controllerRotation;
+    public float speed = 5.0f;
+    public float digDistance = 1.0f;
+    public float digStrength = 100.0f;
+    public float controllerRotation = 0.0f;
+    public float[] gemCount = new float[5];
 
     private Vector3 lastDirection;
     private Rigidbody2D body;
@@ -72,5 +73,19 @@ public class Player : MonoBehaviour {
             body.MovePosition(transform.position + move * speed * Time.deltaTime);
             sprite.sortingOrder = 100 - (int)transform.position.y;
         }
+    }
+
+    public bool AddGem(int gemId)
+    {
+        if (gemId < 0 || gemId >= gemCount.Length)
+            return false;
+
+        if (gemId < 4 && gemCount[gemId] >= 3)
+            return false;
+        else if (gemCount[gemId] >= 4)
+            return false;
+
+        gemCount[gemId]++;
+        return true;
     }
 }

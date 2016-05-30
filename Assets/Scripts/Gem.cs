@@ -9,7 +9,8 @@ public class Gem : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 	}
 
     void OnTriggerEnter2D(Collider2D other)

@@ -27,6 +27,8 @@ public class Player : MonoBehaviour {
         xAxisName = string.Format("player{0}_x", playerNum);
         yAxisName = string.Format("player{0}_y", playerNum);
         digButtonName = string.Format("player{0}_dig", playerNum);
+
+        UpdateGemLeds();
     }
 
     void Update()
@@ -86,6 +88,36 @@ public class Player : MonoBehaviour {
             return false;
 
         gemCount[gemId]++;
+
+        UpdateGemLeds();
         return true;
+    }
+
+    private void UpdateGemLeds()
+    {
+        KeypadController pad = GetComponent<KeypadController>();
+        if (!pad)
+            return;
+
+        bool[] leds = new bool[16];
+
+        leds[0] = gemCount[0] > 0;
+        leds[1] = gemCount[1] > 0;
+        leds[2] = gemCount[2] > 0;
+        leds[3] = gemCount[3] > 0;
+        leds[4] = gemCount[0] > 1;
+        leds[5] = gemCount[1] > 1;
+        leds[6] = gemCount[2] > 1;
+        leds[7] = gemCount[3] > 1;
+        leds[8] = gemCount[0] > 2;
+        leds[9] = gemCount[1] > 2;
+        leds[10] = gemCount[2] > 2;
+        leds[11] = gemCount[3] > 2;
+        leds[12] = gemCount[4] > 0;
+        leds[13] = gemCount[4] > 1;
+        leds[14] = gemCount[4] > 2;
+        leds[15] = gemCount[4] > 3;
+
+        pad.SetLedState(leds);
     }
 }

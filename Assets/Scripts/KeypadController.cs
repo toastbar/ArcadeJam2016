@@ -9,14 +9,37 @@ public class KeypadController : MonoBehaviour {
     private SerialPort serial;
 
     // Use this for initialization
-    void Start () {
-        serial = new SerialPort(comPort, 38400, Parity.Even, 8, StopBits.One);
-        serial.Open();
-        serial.Write("o*\n");
+    void Awake () {
+        try
+        {
+            serial = new SerialPort(comPort, 38400, Parity.Even, 8, StopBits.One);
+            serial.Open();
+            serial.Write("o*\n");
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log(e.Message);
+            serial = null;
+        }
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    void OnDestroy()
+    {
+        serial.Close();
+    }
+
+    public void SetLedState(bool[] ledStates)
+    {
+        if (serial == null)
+            return;
+
+        Debug.Log(ledStates);
+        for (int i = 0; i < 16; i++)
+        {
+            if (ledStates.Length > i)
+            {
+                serial.Write(string.Format("{0}{1:X}\n", ledStates[i] ? 'o' : 'f', i));
+            }
+        }
+    }
 }

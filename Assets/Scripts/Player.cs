@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
     public float digStrength = 100.0f;
     public float controllerRotation = 0.0f;
     public float[] gemCount = new float[5];
+    public Color color;
 
     private Vector3 lastDirection;
     private Rigidbody2D body;
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour {
         digButtonName = string.Format("player{0}_dig", playerNum);
 
         UpdateGemLeds();
+        UpdateButtonColors();
     }
 
     void Update()
@@ -119,5 +121,12 @@ public class Player : MonoBehaviour {
         leds[15] = gemCount[4] > 3;
 
         pad.SetLedState(leds);
+    }
+
+    private void UpdateButtonColors()
+    {
+        JoypadController joy = GetComponent<JoypadController>();
+
+        joy.SetColorState(new Color[4] { color, Color.white, Color.red, Color.blue });
     }
 }

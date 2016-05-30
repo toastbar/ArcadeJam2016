@@ -2,46 +2,46 @@
 using System.Collections;
 using System.IO.Ports;
 
-public class KeypadController : MonoBehaviour {
-
+public class JoypadController : MonoBehaviour
+{
     public string comPort;
 
     private SerialPort serial;
 
     // Use this for initialization
-    void Awake () {
+    void Awake()
+    {
         try
         {
             serial = new SerialPort(comPort, 38400, Parity.Even, 8, StopBits.One);
             serial.Open();
-            serial.Write("o*\n");
-            serial.Write("s0s00ff00\n");
-            serial.Write("s1s00ffff\n");
         }
         catch (System.Exception e)
         {
             Debug.Log(e.Message);
             serial = null;
         }
-	}
+    }
 
     void OnDestroy()
     {
         serial.Close();
     }
 
-    public void SetLedState(bool[] ledStates)
+    public void SetColorState(Color[] colors)
     {
         if (serial == null)
             return;
 
-        Debug.Log(ledStates);
-        for (int i = 0; i < 16; i++)
+        for (int i = 0; i < 4; i++)
         {
-            if (ledStates.Length > i)
+            if (colors.Length > i)
             {
-                serial.Write(string.Format("{0}{1:X}\n", ledStates[i] ? 'o' : 'f', i));
+                Color color = colors[i];
+                string command = System.String.Format("s{0:X1}s{1:X2}{2:X2}{3:X2}\n", i, (byte)(color.r * 255), (byte)(color.g * 255), (byte)(color.b * 255));
+                serial.Write(command);
             }
         }
     }
 }
+

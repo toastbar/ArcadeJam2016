@@ -12,7 +12,7 @@ public class Diggable : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
     public void ApplyHit(float damage)
@@ -25,8 +25,10 @@ public class Diggable : MonoBehaviour {
             {
                 Object.Instantiate(onDestroyObject, transform.position, transform.rotation);
             }
+			//this.GetComponent<SpriteRenderer> ().sprite = null;
+			//gameObject.GetComponent<SpriteRenderer> ().sprite = null;
+			Object.Destroy(gameObject);
 
-            Object.DestroyImmediate(gameObject);
         }
     }
 }

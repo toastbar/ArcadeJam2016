@@ -14,14 +14,14 @@ public class Explosion : MonoBehaviour {
 		float x1 = transform.position.x;
 		float y1 = transform.position.y;
 
-	Collider2D[] hits = Physics2D.OverlapCircleAll (new Vector2 (x1, y1), 3.0f);
+	Collider2D[] hits = Physics2D.OverlapCircleAll (new Vector2 (x1, y1), 5.0f);
 		foreach (Collider2D hit in hits)
 		{
 			if (hit) {
-				Diggable dig = hit.GetComponent<Diggable> ();
+				Diggable dig = hit.GetComponent<Diggable>();
 				if (dig) {
-					dig.ApplyHit (damage);
-					break;
+					dig.ApplyHit(damage);
+					//break;
 				}
 			}
 	}

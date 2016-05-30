@@ -41,8 +41,6 @@ public class Player : MonoBehaviour {
 
             RaycastHit2D[] hits = Physics2D.CircleCastAll(new Vector2(x1, y1), 0.3f, new Vector2(lastDirection.x, lastDirection.y), digDistance);
 
-            Debug.DrawRay(new Vector3(x1, y1, 0), lastDirection, Color.red, 5.0f);
-
             foreach (RaycastHit2D hit in hits)
             {
                 if (hit.collider)
@@ -50,7 +48,6 @@ public class Player : MonoBehaviour {
                     Diggable dig = hit.collider.GetComponent<Diggable>();
                     if (dig)
                     {
-                        Debug.Log(hit.collider);
                         dig.ApplyHit(digStrength);
                         break;
                     }
@@ -66,10 +63,9 @@ public class Player : MonoBehaviour {
 
         Vector3 move = Quaternion.Euler(0, 0, controllerRotation) * new Vector3(moveX, moveY, 0);
 
-        Debug.Log(move);
-
         if (move.sqrMagnitude >= 0.25)
         {
+            body.velocity = new Vector2(0.0f, 0.0f);
             move.Normalize();
             lastDirection = move;
 

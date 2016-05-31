@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class MapMaker : MonoBehaviour {
-    public List<GameObject> tileObjects;
+
+    public char[] tileSymbols;
+    public GameObject[] tileObjects;
     public TextAsset mapFile;
     public int tileWidth;
     public int tileHeight;
@@ -14,6 +16,13 @@ public class MapMaker : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        var tileDict = new Dictionary<char, GameObject>();
+
+        for (int i = 0; i < tileSymbols.Length; ++i)
+        {
+            tileDict[tileSymbols[i]] = tileObjects[i];
+        }
+
         string[] lines = mapFile.text.Split('\n');
 
         Debug.Log(string.Format("{0} lines read", lines.Length));
@@ -22,30 +31,15 @@ public class MapMaker : MonoBehaviour {
         float originX = (float)mapWidth / 2.0f * -(float)tileWidth + (float)tileWidth * 0.5f;
   
         _map = new GameObject[mapHeight][];
-        for (int ty = 0; ty < mapHeight; ++ty) {
+        for (int ty = 0; ty < mapHeight; ++ty)
+        {
             _map[ty] = new GameObject[mapWidth];
 
             string line = lines[ty];
 
-            for (int tx = 0; tx < mapWidth; ++tx) {
-                int tileId = 0;
-                switch (line[tx])
-                {
-                    case '.': tileId = 1;
-                        break;
-					case '*': tileId = 2;
-						break;
-				    case 'B': tileId = 3;
-					    break;
-                    case '=': tileId = 4;
-                        break;
-                    case 's': tileId = 5;
-                        break;
-                    case '#': tileId = 6;
-                        break;
-                }
-					
-                GameObject tileProto = tileObjects[tileId];
+            for (int tx = 0; tx < mapWidth; ++tx)
+            {
+                GameObject tileProto = tileDict[line[tx]];
 
                 if (tileProto)
                 {

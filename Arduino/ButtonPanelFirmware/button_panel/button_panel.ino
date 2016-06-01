@@ -3,6 +3,12 @@
 #include <LPD8806.h>    
 #include "Adafruit_Trellis.h"
 #include <SPI.h>
+#include <EEPROM.h>
+
+#define VERSION "Trellis Arrows Panel V.2"
+
+// EEPROM addresses
+#define PANEL_ID             0
 
 Adafruit_Trellis trellis = Adafruit_Trellis();
 
@@ -19,7 +25,7 @@ LPD8806 LEDStrip = LPD8806( STRIP_LED_COUNT, 9 /* data pin */, 10 /* clock pin *
 void setup() {
   Serial.begin(38400);
 
-  trellis.begin(0x71);
+  trellis.begin(0x70);
   
   // Joystick configured for Manual Send, Joystick.send_now() must be called
   //  to send a USB packet accross the wire
@@ -82,14 +88,14 @@ void loop() {
     // If a button was just pressed or released...
     if (trellis.readSwitches()) {
       // go through every button
-      for (uint8_t i=0; i<12; i++) {
+      for (uint8_t i=0; i<16; i++) {
         Joystick.button(i + 1, trellis.isKeyPressed(i));
       }
 
-      Joystick.button(13, trellis.isKeyPressed(12) ||
-                          trellis.isKeyPressed(13) ||
-                          trellis.isKeyPressed(14) ||
-                          trellis.isKeyPressed(15));
+//      Joystick.button(13, trellis.isKeyPressed(12) ||
+//                          trellis.isKeyPressed(13) ||
+//                          trellis.isKeyPressed(14) ||
+//                          trellis.isKeyPressed(15));
     }
     // tell the trellis to set the LEDs we requested
     trellis.writeDisplay();
@@ -101,6 +107,7 @@ void loop() {
 void ProcessCommand(char* command, int len)
 {
   int pad_led;
+  int panelId;
   
   if (len < 1)
     return;
@@ -152,7 +159,57 @@ void ProcessCommand(char* command, int len)
         trellis.clrLED(pad_led);
       }
       break;
-      
+
+     case 'v':
+       Serial.printf("%s\n", VERSION);
+       break;
+       
+     case 'i':
+       panelId = EEPROM.read(PANEL_ID);
+       Serial.printf("%02X\n", panelId);
+       Joystick.button(1, 1);
+       Strip_ProcessCommand("s0fffffff0030", 13);
+       Strip_ProcessCommand("s1s000000", 9);
+       trellis.clear();
+       trellis.blinkRate(2);
+       trellis.setLED(0);
+       trellis.writeDisplay();
+       for (int i = 0; i < 100; ++i)
+       {
+ 
+         Joystick.send_now();
+         Strip_Update();
+         delay(10);
+       }
+       Joystick.button(1, 0);
+       Joystick.send_now();
+       trellis.clear();
+       trellis.blinkRate(0);
+       trellis.writeDisplay();
+       Strip_ProcessCommand("s0r0004", 7);
+       Strip_ProcessCommand("s1r0004", 7);
+       break;
+       
+     case 'w':
+       if (len == 3)
+       {
+         panelId = IntFromHex(&command[1], 2);
+         if (panelId < 0)
+         {
+           Serial.printf("Invalid panel id: %s\n", &command[1]);
+         }
+         else
+         {
+           EEPROM.write(PANEL_ID, panelId);
+           Serial.printf("success");
+         }
+       }
+       else
+       {
+         Serial.printf("Invalid command length for: w\n");
+       }
+       break;
+       
     default:
       goto error;
   }

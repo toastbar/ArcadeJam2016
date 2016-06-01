@@ -71,7 +71,10 @@ void Strip_ProcessCommand( char* Command, int CommandLength )
   
   LEDGroupState* group;
   
-  uint32_t buttonId = IntFromHex( Command[1] );
+  int buttonId = IntFromHex( Command[1] );
+  if (buttonId < 0)
+    goto error;
+ 
   group = &ButtonLEDState[buttonId];
 
   switch ( Command[2] )
@@ -81,9 +84,12 @@ void Strip_ProcessCommand( char* Command, int CommandLength )
       if ( CommandLength != 9 )
         goto error;
         
-      uint8_t red = IntFromHex( &Command[3], 2 );
-      uint8_t green = IntFromHex( &Command[5], 2 );
-      uint8_t blue = IntFromHex( &Command[7], 2 );
+      int red = IntFromHex( &Command[3], 2 );
+      int green = IntFromHex( &Command[5], 2 );
+      int blue = IntFromHex( &Command[7], 2 );
+      
+      if (red < 0 || green < 0 || blue < 0)
+        goto error;
       
       group->SetSolid( red,green,blue );
     }
@@ -94,11 +100,16 @@ void Strip_ProcessCommand( char* Command, int CommandLength )
       if ( CommandLength != 13 )
         goto error;
         
-      uint8_t red = IntFromHex( &Command[3], 2 );
-      uint8_t green = IntFromHex( &Command[5], 2 );
-      uint8_t blue = IntFromHex( &Command[7], 2 );
+      int red = IntFromHex( &Command[3], 2 );
+      int green = IntFromHex( &Command[5], 2 );
+      int blue = IntFromHex( &Command[7], 2 );
       
-      uint32_t flashInterval = IntFromHex( &Command[9], 4 );
+      if (red < 0 || green < 0 || blue < 0)
+        goto error;
+ 
+      int flashInterval = IntFromHex( &Command[9], 4 );
+      if (flashInterval < 0)
+        goto error;
       
       group->SetFlashing( red,green,blue, flashInterval );
     }
@@ -109,8 +120,10 @@ void Strip_ProcessCommand( char* Command, int CommandLength )
         if ( CommandLength != 7 )
           goto error;
           
-        uint32_t flashInterval = IntFromHex( &Command[3], 4 );
-        
+        int flashInterval = IntFromHex( &Command[3], 4 );
+        if (flashInterval < 0)
+          goto error;
+
         group->SetRainbowScroll( flashInterval ); 
     }
     break;
@@ -120,11 +133,14 @@ void Strip_ProcessCommand( char* Command, int CommandLength )
         if ( CommandLength != 11 )
           goto error;
           
-      uint8_t red = IntFromHex( &Command[3], 2 );
-      uint8_t green = IntFromHex( &Command[5], 2 );
-      uint8_t blue = IntFromHex( &Command[7], 2 );
-      uint8_t value = IntFromHex( &Command[9], 2 );
+      int red = IntFromHex( &Command[3], 2 );
+      int green = IntFromHex( &Command[5], 2 );
+      int blue = IntFromHex( &Command[7], 2 );
+      int value = IntFromHex( &Command[9], 2 );
       
+      if (red < 0 || green < 0 || blue < 0 || value < 0)
+        goto error;
+
       group->SetMeter( red,green,blue, value );
     }
   }

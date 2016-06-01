@@ -2,7 +2,12 @@
 #include <Adafruit_NeoPixel.h>
 #include <LPD8806.h>
 #include <SPI.h>
+#include <EEPROM.h>
 
+#define VERSION "Three Button RGB Panel V.1"
+
+// EEPROM addresses
+#define PANEL_ID             0
 
 // Digital Input Pin Setup
 #define PIN_BUTTON_A1        6
@@ -134,22 +139,73 @@ void loop()
  
  void ProcessCommand( char* Command, int CommandLength )
  {
+   int panelId;
+
    if ( CommandLength <= 0 )
      return;
      
    Command[CommandLength] = 0;
-   
-   Serial.printf("%s\n", Command);
    
    switch ( Command[0] )
    {
      case 's':
        Strip_ProcessCommand( Command, CommandLength );
        break;
+       
+     case 'v':
+       Serial.printf("%s\n", VERSION);
+       break;
+       
+     case 'i':
+       panelId = EEPROM.read(PANEL_ID);
+       Serial.printf("%02X\n", panelId);
+       Joystick.button(1, 1);
+       Strip_ProcessCommand("s0fffffff0020", 13);
+       Strip_ProcessCommand("s1s000000", 9);
+       Strip_ProcessCommand("s2s000000", 9);
+       Strip_ProcessCommand("s3s000000", 9);
+
+       for (int i = 0; i < 100; ++i)
+       {
+         Joystick.send_now();
+         Strip_Update();
+         delay(10);
+       }
+       Joystick.button(1, 0);
+       Joystick.send_now();
+       Strip_ProcessCommand("s0r0004", 7);
+       Strip_ProcessCommand("s1r0004", 7);
+       Strip_ProcessCommand("s2r0004", 7);
+       Strip_ProcessCommand("s3r0004", 7);
+       break;
+       
+     case 'w':
+       if (CommandLength == 3)
+       {
+         panelId = IntFromHex(&Command[1], 2);
+         if (panelId < 0)
+         {
+           Serial.printf("Invalid panel id: %s\n", &Command[1]);
+         }
+         else
+         {
+           EEPROM.write(PANEL_ID, panelId);
+           Serial.printf("success");
+         }
+       }
+       else
+       {
+         Serial.printf("Invalid command length for: w\n");
+       }
+       break;
+       
+     default:
+       Serial.printf("Invalid command: %s\n", Command);
+       break;
    }
  }
  
-uint32_t IntFromHex( char c )
+int IntFromHex( char c )
 {
   if ( c >= '0' && c <= '9' )
   {
@@ -166,16 +222,20 @@ uint32_t IntFromHex( char c )
     return c - 'a' + 10;
   }
   
-  return 0;
+  return -1;
 }
 
-uint32_t IntFromHex( char* input, int numDigits )
+int IntFromHex( char* input, int numDigits )
 {
-  uint32_t returnVal = 0;
+  int returnVal = 0;
   
   for ( int i = 0; i < numDigits; ++i )
   {
-    returnVal += IntFromHex( input[i] ) << (4 * (numDigits - i - 1) );
+    int hexVal = IntFromHex( input[i] ) << (4 * (numDigits - i - 1) );
+    if (hexVal < 0)
+      return -1;
+
+    returnVal += hexVal;
   }
  
   return returnVal;

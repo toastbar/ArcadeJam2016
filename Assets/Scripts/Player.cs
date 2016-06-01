@@ -15,9 +15,12 @@ public class Player : MonoBehaviour {
     private Rigidbody2D body;
     private SpriteRenderer sprite;
 
+    private Vector3 secretTreasure;
+
     private string xAxisName;
     private string yAxisName;
     private string digButtonName;
+    private string[][] matrixButtonNames;
 
     void Start()
     {
@@ -28,6 +31,19 @@ public class Player : MonoBehaviour {
         xAxisName = string.Format("player{0}_x", playerNum);
         yAxisName = string.Format("player{0}_y", playerNum);
         digButtonName = string.Format("player{0}_dig", playerNum);
+
+        matrixButtonNames = new string[4][];
+        for (int matrix_row = 0; matrix_row < 4; ++matrix_row)
+        {
+            matrixButtonNames[matrix_row] = new string[4];
+            for (int matrix_col = 0; matrix_col < 4; ++matrix_col)
+            {
+                matrixButtonNames[matrix_row][matrix_col] = string.Format("player{0}_matrix{1}{2}", playerNum, matrix_row + 1, matrix_col + 1);
+            }
+        }
+
+
+        secretTreasure = new Vector3(Random.Range(-30, 30), Random.Range(-18, 18), 0);
 
         UpdateGemLeds();
         UpdateButtonColors();
@@ -59,6 +75,52 @@ public class Player : MonoBehaviour {
                 }
             }
         }
+
+        bool gemsUpdated = false;
+        for (int matrix_row = 0; matrix_row < 4; ++matrix_row)
+        {
+            for (int matrix_col = 0; matrix_col < 4; ++matrix_col)
+            {
+                if (Input.GetButtonDown(matrixButtonNames[matrix_row][matrix_col]))
+                {
+                    Debug.Log(string.Format("player {0} pushed row {1} col {2}", playerNum, matrix_row, matrix_col));
+                    if (matrix_row == 3)
+                    {
+                        // Wild gems!
+                        gemCount[4] = matrix_col + 1;
+                        gemsUpdated = true;
+                    }
+                    else if (matrix_col == 0)
+                    {
+                        // Blue gems
+                        gemCount[0] = matrix_row + 1;
+                        gemsUpdated = true;
+                    }
+                    else if (matrix_col == 1)
+                    {
+                        // Red gems
+                        gemCount[1] = matrix_row + 1;
+                        gemsUpdated = true;
+                    }
+                    else if (matrix_col == 2)
+                    {
+                        // Yellow gems
+                        gemCount[2] = matrix_row + 1;
+                        gemsUpdated = true;
+                    }
+                    else if (matrix_col == 3)
+                    {
+                        // Green gems
+                        gemCount[3] = matrix_row + 1;
+                        gemsUpdated = true;
+                    }
+                }
+            }
+        }
+
+        if (gemsUpdated)
+            UpdateGemLeds();
+
     }
 
     void FixedUpdate()
@@ -77,6 +139,8 @@ public class Player : MonoBehaviour {
             body.MovePosition(transform.position + move * speed * Time.deltaTime);
             sprite.sortingOrder = 100 - (int)transform.position.y;
         }
+
+        UpdateSecretLocator();
     }
 
     public bool AddGem(int gemId)
@@ -121,6 +185,72 @@ public class Player : MonoBehaviour {
         leds[15] = gemCount[4] > 3;
 
         pad.SetLedState(leds);
+    }
+
+    private void UpdateSecretLocator()
+    {
+        Vector3 diff = secretTreasure - transform.position;
+        diff = Quaternion.Euler(0, 0, -controllerRotation) * diff;
+
+        float left = 0.0f;
+        float right = 0.0f;
+        float horiz = 0.0f;
+        if (Mathf.Abs(diff.x) < 10.0f)
+        {
+            float intensity = diff.x / 10.0f;
+            if (intensity < 0)
+            {
+                left = 1.0f  + intensity;
+
+                if (left > 0.9)
+                    right = left;
+                else
+                    horiz = left;
+            }
+            else
+            {
+                right = 1.0f - intensity;
+
+                if (right > 0.9)
+                    left = right;
+                else
+                    horiz = right;
+            }
+        }
+
+        float up = 0.0f;
+        float down = 0.0f;
+        float vert = 0.0f;
+        if (Mathf.Abs(diff.y) < 10.0f)
+        {
+            float intensity = diff.y / 10.0f;
+            if (intensity < 0)
+            {
+                down = 1.0f + intensity;
+
+                if (down > 0.9)
+                    up = down;
+                else
+                    vert = down;
+            }
+            else
+            {
+                up = 1.0f - intensity;
+
+                if (up > 0.9)
+                    down = up;
+                else
+                    vert = up;
+            }
+        }
+
+        KeypadController pad = GetComponent<KeypadController>();
+        if (!pad)
+            return;
+
+        if (playerNum == 4)
+            Debug.Log(string.Format("{0} {1} {2}   {3} {4} {5}", left, horiz, right, up, vert, down));
+        pad.SetArrowState(left, horiz, right, up, vert, down);
     }
 
     private void UpdateButtonColors()

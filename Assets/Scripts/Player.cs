@@ -82,8 +82,7 @@ public class Player : MonoBehaviour {
             for (int matrix_col = 0; matrix_col < 4; ++matrix_col)
             {
                 if (Input.GetButtonDown(matrixButtonNames[matrix_row][matrix_col]))
-                {
-                    Debug.Log(string.Format("player {0} pushed row {1} col {2}", playerNum, matrix_row, matrix_col));
+                {   
                     if (matrix_row == 3)
                     {
                         // Wild gems!
@@ -248,8 +247,6 @@ public class Player : MonoBehaviour {
         if (!pad)
             return;
 
-        if (playerNum == 4)
-            Debug.Log(string.Format("{0} {1} {2}   {3} {4} {5}", left, horiz, right, up, vert, down));
         pad.SetArrowState(left, horiz, right, up, vert, down);
     }
 

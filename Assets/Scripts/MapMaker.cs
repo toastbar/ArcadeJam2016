@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -56,6 +57,9 @@ public class MapMaker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("main");
+        }
 	}
 }

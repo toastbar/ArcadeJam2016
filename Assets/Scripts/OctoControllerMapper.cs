@@ -8,7 +8,6 @@ public class OctoControllerMapper : MonoBehaviour {
 
     private Dictionary<int, string> controllerPortMapping;
     private string[] ports;
-    private bool started = false;
 
 	// Use this for initialization
 	void Start () {

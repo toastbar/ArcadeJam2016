@@ -25,7 +25,7 @@ public class MapMakerImage : MonoBehaviour {
             int mapWidth = image.width;
             int mapHeight = image.height;
 
-            float originY = (float)mapHeight / 2.0f * -(float)tileHeight - (float)tileHeight * 0.5f;
+            float originY = (float)mapHeight / 2.0f * -(float)tileHeight + (float)tileHeight * 0.5f;
             float originX = (float)mapWidth / 2.0f * -(float)tileWidth + (float)tileWidth * 0.5f;
 
             for (int ty = 0; ty < mapHeight; ++ty)

@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
     public float controllerRotation = 0.0f;
     public float[] gemCount = new float[5];
     public Color color;
+    public GameObject[] redPowers;
 
     private Vector3 lastDirection;
     private Rigidbody2D body;
@@ -20,7 +21,19 @@ public class Player : MonoBehaviour {
     private string xAxisName;
     private string yAxisName;
     private string digButtonName;
+    private string power0ButtonName;
+    private string power1ButtonName;
     private string[][] matrixButtonNames;
+    private PlayerPower[] activePowers = new PlayerPower[2];
+
+    private enum PowerColor
+    {
+        Blue,
+        Red,
+        Yellow,
+        Green,
+        Wild
+    };
 
     void Start()
     {
@@ -31,6 +44,8 @@ public class Player : MonoBehaviour {
         xAxisName = string.Format("player{0}_x", playerNum);
         yAxisName = string.Format("player{0}_y", playerNum);
         digButtonName = string.Format("player{0}_dig", playerNum);
+        power0ButtonName = string.Format("player{0}_power0", playerNum);
+        power1ButtonName = string.Format("player{0}_power1", playerNum);
 
         matrixButtonNames = new string[4][];
         for (int matrix_row = 0; matrix_row < 4; ++matrix_row)
@@ -47,6 +62,8 @@ public class Player : MonoBehaviour {
 
         UpdateGemLeds();
         UpdateButtonColors();
+
+        ActivatePower(PowerColor.Red, 0);
     }
 
     void Update()
@@ -76,6 +93,36 @@ public class Player : MonoBehaviour {
             }
         }
 
+        if (Input.GetButtonDown(power0ButtonName))
+        {
+            if (activePowers[0] != null)
+            {
+                activePowers[0].OnButtonDown();
+            }
+        }
+        if (Input.GetButtonUp(power0ButtonName))
+        {
+            if (activePowers[0] != null)
+            {
+                activePowers[0].OnButtonUp();
+            }
+        }
+
+        if (Input.GetButtonDown(power1ButtonName))
+        {
+            if (activePowers[1] != null)
+            {
+                activePowers[1].OnButtonDown();
+            }
+        }
+        if (Input.GetButtonUp(power1ButtonName))
+        {
+            if (activePowers[1] != null)
+            {
+                activePowers[1].OnButtonUp();
+            }
+        }
+
         bool gemsUpdated = false;
         for (int matrix_row = 0; matrix_row < 4; ++matrix_row)
         {
@@ -86,32 +133,62 @@ public class Player : MonoBehaviour {
                     if (matrix_row == 3)
                     {
                         // Wild gems!
-                        gemCount[4] = matrix_col + 1;
-                        gemsUpdated = true;
+                        if (gemCount[4] > matrix_col)
+                        {
+                            if (ActivatePower(PowerColor.Wild, matrix_col))
+                            {
+                                gemCount[4]--;
+                                gemsUpdated = true;
+                            }
+                        }
                     }
                     else if (matrix_col == 0)
                     {
                         // Blue gems
-                        gemCount[0] = matrix_row + 1;
-                        gemsUpdated = true;
+                        if (gemCount[0] > matrix_row)
+                        {
+                            if (ActivatePower(PowerColor.Blue, matrix_row))
+                            {
+                                gemCount[0]--;
+                                gemsUpdated = true;
+                            }
+                        }
                     }
                     else if (matrix_col == 1)
                     {
                         // Red gems
-                        gemCount[1] = matrix_row + 1;
-                        gemsUpdated = true;
+                        if (gemCount[1] > matrix_row)
+                        {
+                            if (ActivatePower(PowerColor.Red, matrix_row))
+                            {
+                                gemCount[1]--;
+                                gemsUpdated = true;
+                            }
+                        }
                     }
                     else if (matrix_col == 2)
                     {
                         // Yellow gems
-                        gemCount[2] = matrix_row + 1;
-                        gemsUpdated = true;
+                        if (gemCount[2] > matrix_row)
+                        {
+                            if (ActivatePower(PowerColor.Yellow, matrix_row))
+                            {
+                                gemCount[2]--;
+                                gemsUpdated = true;
+                            }
+                        }
                     }
                     else if (matrix_col == 3)
                     {
                         // Green gems
-                        gemCount[3] = matrix_row + 1;
-                        gemsUpdated = true;
+                        if (gemCount[3] > matrix_row)
+                        {
+                            if (ActivatePower(PowerColor.Green, matrix_row))
+                            {
+                                gemCount[3]--;
+                                gemsUpdated = true;
+                            }
+                        }
                     }
                 }
             }
@@ -120,6 +197,7 @@ public class Player : MonoBehaviour {
         if (gemsUpdated)
             UpdateGemLeds();
 
+        UpdateButtonColors();
     }
 
     void FixedUpdate()
@@ -254,6 +332,68 @@ public class Player : MonoBehaviour {
     {
         JoypadController joy = GetComponent<JoypadController>();
 
-        joy.SetColorState(new Color[4] { color, Color.white, Color.red, Color.blue });
+        Color power0Color = Color.black;
+        if (activePowers[0] != null)
+        {
+            power0Color = activePowers[0].GetControllerColor();
+        }
+
+        Color power1Color = Color.black;
+        if (activePowers[1] != null)
+        {
+            power1Color = activePowers[1].GetControllerColor();
+        }
+
+        joy.SetColorState(new Color[4] { color, Color.white, power0Color, power1Color });
+    }
+
+    private bool ActivatePower(PowerColor color, int index)
+    {
+        int powerIndex = -1;
+
+        for (int i = 0; i < activePowers.Length; ++i)
+        {
+            if (activePowers[i] == null)
+            {
+                powerIndex = i;
+                break;
+            }
+        }
+
+        if (powerIndex < 0)
+            return false;
+
+        switch (color)
+        {
+            case PowerColor.Red:
+                if (index < redPowers.Length)
+                {
+                    var powerObj = Object.Instantiate(redPowers[index]);
+                    var power = powerObj.GetComponent<PlayerPower>();
+                    power.Activate(this);
+                    activePowers[powerIndex] = power;
+                    return true;
+                }
+                break;
+        }
+
+        return false;
+    }
+
+    public void DeactivatePower(PlayerPower power)
+    {
+        for (int i = 0; i < activePowers.Length; ++i)
+        {
+            if (activePowers[i] == power)
+            {
+                activePowers[i] = null;
+                break;
+            }
+        }
+    }
+
+    public Vector3 GetLastDireciton()
+    {
+        return lastDirection;
     }
 }

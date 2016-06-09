@@ -11,6 +11,9 @@ public class Player : MonoBehaviour {
     public float[] gemCount = new float[5];
     public Color color;
     public GameObject[] redPowers;
+    public GameObject[] bluePowers;
+    public GameObject[] yellowPowers;
+    public GameObject[] greenPowers;
 
     private Vector3 lastDirection;
     private Rigidbody2D body;
@@ -369,6 +372,39 @@ public class Player : MonoBehaviour {
                 if (index < redPowers.Length)
                 {
                     var powerObj = Object.Instantiate(redPowers[index]);
+                    var power = powerObj.GetComponent<PlayerPower>();
+                    power.Activate(this);
+                    activePowers[powerIndex] = power;
+                    return true;
+                }
+                break;
+
+            case PowerColor.Blue:
+                if (index < bluePowers.Length)
+                {
+                    var powerObj = Object.Instantiate(bluePowers[index]);
+                    var power = powerObj.GetComponent<PlayerPower>();
+                    power.Activate(this);
+                    activePowers[powerIndex] = power;
+                    return true;
+                }
+                break;
+
+            case PowerColor.Yellow:
+                if (index < yellowPowers.Length)
+                {
+                    var powerObj = Object.Instantiate(yellowPowers[index]);
+                    var power = powerObj.GetComponent<PlayerPower>();
+                    power.Activate(this);
+                    activePowers[powerIndex] = power;
+                    return true;
+                }
+                break;
+
+            case PowerColor.Green:
+                if (index < greenPowers.Length)
+                {
+                    var powerObj = Object.Instantiate(greenPowers[index]);
                     var power = powerObj.GetComponent<PlayerPower>();
                     power.Activate(this);
                     activePowers[powerIndex] = power;

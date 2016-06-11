@@ -9,11 +9,13 @@ public class Player : MonoBehaviour {
     public float digStrength = 100.0f;
     public float controllerRotation = 0.0f;
     public float[] gemCount = new float[5];
+    public GameObject buttonVis;
     public Color color;
     public GameObject[] redPowers;
     public GameObject[] bluePowers;
     public GameObject[] yellowPowers;
     public GameObject[] greenPowers;
+    public GameObject[] wildPowers;
 
     private Vector3 lastDirection;
     private Rigidbody2D body;
@@ -28,6 +30,12 @@ public class Player : MonoBehaviour {
     private string power1ButtonName;
     private string[][] matrixButtonNames;
     private PlayerPower[] activePowers = new PlayerPower[2];
+
+    private SpriteRenderer controllerJoySprite;
+    private SpriteRenderer controllerButton1Sprite;
+    private SpriteRenderer controllerButton2Sprite;
+    private SpriteRenderer controllerButton3Sprite;
+    private SpriteRenderer[][] matrixButtonSprites;
 
     private enum PowerColor
     {
@@ -60,6 +68,7 @@ public class Player : MonoBehaviour {
             }
         }
 
+        SetupButtonSprites();
 
         secretTreasure = new Vector3(Random.Range(-30, 30), Random.Range(-18, 18), 0);
 
@@ -241,6 +250,30 @@ public class Player : MonoBehaviour {
 
     private void UpdateGemLeds()
     {
+        if (matrixButtonSprites != null)
+        {
+            for (int row = 0; row < 4; ++row)
+            {
+                for (int col = 0; col < 4; ++col)
+                {
+                    Color c = Color.black;
+                    if (gemCount[col] > row)
+                    {
+                        if (col == 0) c = Color.blue;
+                        if (col == 1) c = Color.red;
+                        if (col == 2) c = Color.yellow;
+                        if (col == 3) c = Color.green;
+                    }
+
+                    if (row == 3 && gemCount[4] > col)
+                        c = Color.white;
+
+                    var sprite = matrixButtonSprites[row][col];
+                    if (sprite)
+                        sprite.color = c;
+                }
+            }
+        }
         KeypadController pad = GetComponent<KeypadController>();
         if (!pad)
             return;
@@ -348,6 +381,14 @@ public class Player : MonoBehaviour {
         }
 
         joy.SetColorState(new Color[4] { color, Color.white, power0Color, power1Color });
+        if (controllerJoySprite)
+            controllerJoySprite.color = color;
+        if (controllerButton1Sprite)
+            controllerButton1Sprite.color = Color.white;
+        if (controllerButton2Sprite)
+            controllerButton2Sprite.color = power0Color;
+        if (controllerButton3Sprite)
+            controllerButton3Sprite.color = power1Color;
     }
 
     private bool ActivatePower(PowerColor color, int index)
@@ -411,6 +452,17 @@ public class Player : MonoBehaviour {
                     return true;
                 }
                 break;
+
+            case PowerColor.Wild:
+                if (index < wildPowers.Length)
+                {
+                    var powerObj = Object.Instantiate(wildPowers[index]);
+                    var power = powerObj.GetComponent<PlayerPower>();
+                    power.Activate(this);
+                    activePowers[powerIndex] = power;
+                    return true;
+                }
+                break;
         }
 
         return false;
@@ -431,5 +483,37 @@ public class Player : MonoBehaviour {
     public Vector3 GetLastDireciton()
     {
         return lastDirection;
+    }
+
+    private void SetupButtonSprites()
+    {
+        matrixButtonSprites = new SpriteRenderer[4][];
+        matrixButtonSprites[0] = new SpriteRenderer[4];
+        matrixButtonSprites[1] = new SpriteRenderer[4];
+        matrixButtonSprites[2] = new SpriteRenderer[4];
+        matrixButtonSprites[3] = new SpriteRenderer[4];
+
+        if (buttonVis)
+        {
+            buttonVis.transform.position = new Vector3(-29, -18, -20);
+                var visObj = Instantiate(buttonVis);
+            foreach (var child in visObj.transform.GetComponentsInChildren<SpriteRenderer>())
+            {
+                if (child.name == "Joy")
+                    controllerJoySprite = child;
+                if (child.name == "Button1")
+                    controllerButton1Sprite = child;
+                if (child.name == "Button2")
+                    controllerButton2Sprite = child;
+                if (child.name == "Button3")
+                    controllerButton3Sprite = child;
+                if (child.name.StartsWith("m"))
+                {
+                    int col = int.Parse(child.name[1].ToString());
+                    int row = int.Parse(child.name[2].ToString());
+                    matrixButtonSprites[row][col] = child;
+                }
+            }
+        }
     }
 }

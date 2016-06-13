@@ -41,7 +41,7 @@ public class JoypadController : MonoBehaviour
             if (colors.Length > i)
             {
                 Color color = colors[i];
-                string command = System.String.Format("s{0:X1}s{1:X2}{2:X2}{3:X2}\n", i, (byte)(color.r * 255), (byte)(color.g * 255), (byte)(color.b * 255));
+                string command = System.String.Format("s{0:X1}s{1:X2}{2:X2}{3:X2}\n", i, (byte)(color.r * 127), (byte)(color.g * 127), (byte)(color.b * 127));
                 serial.Write(command);
             }
         }

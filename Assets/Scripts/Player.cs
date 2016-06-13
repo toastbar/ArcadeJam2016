@@ -214,6 +214,8 @@ public class Player : MonoBehaviour {
 
     void FixedUpdate()
     {
+        Animator anim = GetComponent<Animator>();
+ 
         float moveX = Input.GetAxis(xAxisName);
         float moveY = -Input.GetAxis(yAxisName);
 
@@ -225,8 +227,30 @@ public class Player : MonoBehaviour {
             move.Normalize();
             lastDirection = move;
 
+            float moveAngle = Mathf.Atan2(move.y, move.x);
+            Debug.Log(moveAngle);
+            if (moveAngle > 0)
+                if (moveAngle < Mathf.PI / 4)
+                    anim.SetInteger("moveDir", 3);
+                else if (moveAngle < Mathf.PI * 0.75f)
+                    anim.SetInteger("moveDir", 2);
+                else
+                    anim.SetInteger("moveDir", 1);
+            else if (moveAngle > -Mathf.PI / 4)
+                anim.SetInteger("moveDir", 3);
+            else if (moveAngle > -Mathf.PI * 0.75f)
+                anim.SetInteger("moveDir", 4);
+            else
+                anim.SetInteger("moveDir", 1);
+            anim.SetFloat("speed", 1.0f);
+
             body.MovePosition(transform.position + move * speed * Time.deltaTime);
             sprite.sortingOrder = 100 - (int)transform.position.y;
+        }
+        else
+        {
+            anim.SetInteger("moveDir", 0);
+            anim.SetFloat("speed", 1.0f);
         }
 
         UpdateSecretLocator();
